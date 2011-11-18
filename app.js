@@ -6,7 +6,9 @@
 var express = require('express')
   , routes = require('./routes')
 
-var app = module.exports = express.createServer();
+var app   = module.exports = express.createServer();
+var io    = require('socket.io').listen(app);
+var fs    = require('fs');
 
 // Configuration
 
@@ -35,4 +37,12 @@ app.get('/', routes.index);
 var port = process.env.PORT || 3000;
 
 app.listen(port);
+
+io.sockets.on('connection', function (socket) {
+  socket.on('msg-to-server', function (data) {
+    console.log(data);
+    io.sockets.emit('msg-to-client', data);
+  });
+});
+
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
