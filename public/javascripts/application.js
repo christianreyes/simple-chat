@@ -1,5 +1,5 @@
 $(function(){
-  var socket = io.connect('http://localhost');
+  var socket = io.connect(location.href);
   
   $('input').bind("keydown", function(e){
     var code = (e.keyCode ? e.keyCode : e.which);
