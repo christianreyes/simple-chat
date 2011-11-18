@@ -17,6 +17,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  process.env.TZ='America/New_York';
 });
 
 app.configure('development', function(){

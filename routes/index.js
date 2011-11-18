@@ -4,5 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express', time: new Date() })
+  var now = new Date();
+  res.render('index', { title: 'Express', time: now});
 };
